@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="landing-hero">
+    <div class="landing-copy">
+        <p class="eyebrow">CRM Small Business</p>
+        <h1>Organize customers, deals and your sales process in one place.</h1>
+        <p class="hero-copy">
+            This site is a small business CRM system built with ASP.NET Core MVC.
+            It helps track clients, manage deals, view pipeline information and work with role-based access for admins, managers and users.
+        </p>
+        <div class="landing-actions">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a class="btn btn-primary btn-lg" asp-controller="Dashboard" asp-action="Index">Open dashboard</a>
+            }
+            else
+            {
+                <a class="btn btn-primary btn-lg" asp-controller="Account" asp-action="Login">Login</a>
+                <a class="btn btn-outline-primary btn-lg" asp-controller="Account" asp-action="Register">Register</a>
+            }
+        </div>
+    </div>
+    <div class="landing-panel">
+        <div class="landing-stat">
+            <span>What it includes</span>
+            <strong>Customers</strong>
+            <small>Track contact details and company relationships.</small>
+        </div>
+        <div class="landing-stat">
+            <span>Sales flow</span>
+            <strong>Deals & Pipeline</strong>
+            <small>See stages like prospecting, proposal and negotiation.</small>
+        </div>
+        <div class="landing-stat">
+            <span>Security</span>
+            <strong>Login & Roles</strong>
+            <small>Different access for Admin, Manager and User accounts.</small>
+        </div>
+    </div>
+</section>

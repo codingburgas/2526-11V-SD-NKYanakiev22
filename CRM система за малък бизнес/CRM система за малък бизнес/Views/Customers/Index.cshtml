@@ -1,0 +1,36 @@
+@model CrmSmallBusiness.ViewModels.CustomerListViewModel
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<section class="page-header">
+    <p class="eyebrow">Customer Management</p>
+    <h1>Клиенти</h1>
+    <p>Базова страница за списък с клиенти, която може да се надгради с пълен CRUD.</p>
+</section>
+
+<div class="content-card">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+            <tr>
+                <th>Име</th>
+                <th>Email</th>
+                <th>Компания</th>
+                <th>Позиция</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@customer.FullName</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.CompanyName</td>
+                    <td>@customer.Position</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+@model CrmSmallBusiness.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<section class="hero-panel mb-4">
+    <div>
+        <p class="eyebrow">CRM система за малък бизнес</p>
+        <h1>Контролен панел за клиенти и сделки</h1>
+        <p class="hero-copy">
+            Структурата покрива основните изисквания от заданието: EF Core, MVC, DTOs,
+            dependency injection, релации между обекти и статистики за pipeline-а.
+        </p>
+    </div>
+</section>
+
+<section class="row g-3 mb-4">
+    <div class="col-md-3">
+        <article class="metric-card">
+            <span>Клиенти</span>
+            <strong>@Model.TotalCustomers</strong>
+        </article>
+    </div>
+    <div class="col-md-3">
+        <article class="metric-card">
+            <span>Активни сделки</span>
+            <strong>@Model.ActiveDeals</strong>
+        </article>
+    </div>
+    <div class="col-md-3">
+        <article class="metric-card">
+            <span>Стойност на pipeline</span>
+            <strong>@Model.TotalPipelineValue.ToString("C")</strong>
+        </article>
+    </div>
+    <div class="col-md-3">
+        <article class="metric-card">
+            <span>Conversion rate</span>
+            <strong>@Model.ConversionRate%</strong>
+        </article>
+    </div>
+</section>
+
+<section class="row g-4">
+    <div class="col-lg-6">
+        <div class="content-card h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>Топ клиенти</h2>
+                <a class="btn btn-sm btn-outline-primary" asp-controller="Customers" asp-action="Index">Виж всички</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                    <tr>
+                        <th>Клиент</th>
+                        <th>Компания</th>
+                        <th>Позиция</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var customer in Model.TopCustomers)
+                    {
+                        <tr>
+                            <td>@customer.FullName</td>
+                            <td>@customer.CompanyName</td>
+                            <td>@customer.Position</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="content-card h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>Предстоящи сделки</h2>
+                <a class="btn btn-sm btn-outline-primary" asp-controller="Deals" asp-action="Index">Pipeline</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                    <tr>
+                        <th>Сделка</th>
+                        <th>Клиент</th>
+                        <th>Етап</th>
+                        <th>Край</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var deal in Model.UpcomingDeals)
+                    {
+                        <tr>
+                            <td>@deal.Title</td>
+                            <td>@deal.CustomerName</td>
+                            <td>@deal.Stage</td>
+                            <td>@deal.ExpectedCloseDate.ToString("dd.MM.yyyy")</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

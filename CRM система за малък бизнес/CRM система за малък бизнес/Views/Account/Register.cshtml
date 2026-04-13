@@ -1,0 +1,53 @@
+@model CrmSmallBusiness.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="auth-shell">
+    <div class="auth-card">
+        <p class="eyebrow">User Registration</p>
+        <h1>Create account</h1>
+        <p class="text-muted">New users are saved in SQLite and start with the <strong>User</strong> role.</p>
+
+        <form asp-action="Register" method="post" class="mt-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="mb-3">
+                <label asp-for="FullName" class="form-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <div class="form-text">Allowed domains: gmail.com, abv.bg, outlook.com, yahoo.com, hotmail.com, icloud.com</div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <div class="password-field">
+                    <input asp-for="Password" class="form-control" />
+                    <button type="button" class="btn btn-outline-secondary toggle-password" data-target="Password">Show</button>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <div class="password-field">
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <button type="button" class="btn btn-outline-secondary toggle-password" data-target="ConfirmPassword">Show</button>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+
+        <p class="auth-link mt-4">
+            Already registered?
+            <a asp-action="Login">Go to login</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

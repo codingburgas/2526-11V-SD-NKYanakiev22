@@ -1,0 +1,38 @@
+@model CrmSmallBusiness.ViewModels.DealListViewModel
+@{
+    ViewData["Title"] = "Deals";
+}
+
+<section class="page-header">
+    <p class="eyebrow">Deals & Pipeline</p>
+    <h1>Сделки</h1>
+    <p>Базова страница за pipeline и бъдещи CRUD операции по сделки.</p>
+</section>
+
+<div class="content-card">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+            <tr>
+                <th>Сделка</th>
+                <th>Клиент</th>
+                <th>Етап</th>
+                <th>Стойност</th>
+                <th>Очаквано затваряне</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var deal in Model.Deals)
+            {
+                <tr>
+                    <td>@deal.Title</td>
+                    <td>@deal.CustomerName</td>
+                    <td>@deal.Stage</td>
+                    <td>@deal.Value.ToString("C")</td>
+                    <td>@deal.ExpectedCloseDate.ToString("dd.MM.yyyy")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
