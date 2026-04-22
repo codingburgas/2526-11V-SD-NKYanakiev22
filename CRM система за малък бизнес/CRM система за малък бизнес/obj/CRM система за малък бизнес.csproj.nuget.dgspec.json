@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nikolay_08\\RiderProjects\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj": {}
+    "C:\\Users\\Nikolay_08\\project-NKYanakiev22\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nikolay_08\\RiderProjects\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj": {
+    "C:\\Users\\Nikolay_08\\project-NKYanakiev22\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nikolay_08\\RiderProjects\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj",
+        "projectUniqueName": "C:\\Users\\Nikolay_08\\project-NKYanakiev22\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj",
         "projectName": "CRM система за малък бизнес",
-        "projectPath": "C:\\Users\\Nikolay_08\\RiderProjects\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj",
+        "projectPath": "C:\\Users\\Nikolay_08\\project-NKYanakiev22\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj",
         "packagesPath": "C:\\Users\\Nikolay_08\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nikolay_08\\RiderProjects\\CRM система за малък бизнес\\CRM система за малък бизнес\\obj\\",
+        "outputPath": "C:\\Users\\Nikolay_08\\project-NKYanakiev22\\CRM система за малък бизнес\\CRM система за малък бизнес\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

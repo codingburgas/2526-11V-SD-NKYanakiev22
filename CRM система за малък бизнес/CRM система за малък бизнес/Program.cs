@@ -32,6 +32,7 @@ builder.Services.AddSingleton<DemoCrmStore>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IDealService, DealService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IBusinessService, BusinessService>();
 
 var app = builder.Build();
 

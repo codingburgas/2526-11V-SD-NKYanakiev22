@@ -1,6 +1,8 @@
 @model CrmSmallBusiness.ViewModels.DealListViewModel
+@using System.Globalization
 @{
     ViewData["Title"] = "Deals";
+    var euroCulture = CultureInfo.GetCultureInfo("fr-FR");
 }
 
 <section class="page-header">
@@ -28,7 +30,7 @@
                     <td>@deal.Title</td>
                     <td>@deal.CustomerName</td>
                     <td>@deal.Stage</td>
-                    <td>@deal.Value.ToString("C")</td>
+                    <td>@deal.Value.ToString("C", euroCulture)</td>
                     <td>@deal.ExpectedCloseDate.ToString("dd.MM.yyyy")</td>
                 </tr>
             }

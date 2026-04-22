@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8yCGOLMYUoQ=",
+  "dgSpecHash": "HC/GMGpWlT8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nikolay_08\\RiderProjects\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj",
+  "projectFilePath": "C:\\Users\\Nikolay_08\\project-NKYanakiev22\\CRM система за малък бизнес\\CRM система за малък бизнес\\CRM система за малък бизнес.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nikolay_08\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Nikolay_08\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\9.0.14\\microsoft.aspnetcore.cryptography.internal.9.0.14.nupkg.sha512",
