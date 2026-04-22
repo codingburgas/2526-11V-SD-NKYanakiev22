@@ -14,7 +14,7 @@ public class BusinessListItemViewModel
     public DateTime CreatedOnUtc { get; init; }
     public bool IsSeededExample { get; init; }
     public bool IsOwnedByCurrentUser { get; init; }
+    public bool CanInvest { get; init; }
     public decimal TotalInvested { get; init; }
     public int InvestorCount { get; init; }
-    public IReadOnlyCollection<BusinessInvestorViewModel> Investors { get; init; } = [];
 }

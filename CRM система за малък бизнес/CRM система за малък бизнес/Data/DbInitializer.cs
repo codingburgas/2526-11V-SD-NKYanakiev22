@@ -120,6 +120,26 @@ public static class DbInitializer
         await EnsureColumnAsync(context, "BusinessInvestments", "ModifiedOnUtc", "TEXT NULL");
         await context.Database.ExecuteSqlRawAsync(
             "CREATE INDEX IF NOT EXISTS IX_BusinessInvestments_BusinessId ON BusinessInvestments (BusinessId);");
+
+        await context.Database.ExecuteSqlRawAsync(
+            """
+            CREATE TABLE IF NOT EXISTS BusinessDeals (
+                Id INTEGER NOT NULL CONSTRAINT PK_BusinessDeals PRIMARY KEY AUTOINCREMENT,
+                BusinessId INTEGER NOT NULL,
+                Title TEXT NOT NULL,
+                ContactName TEXT NOT NULL,
+                Value TEXT NOT NULL,
+                Stage INTEGER NOT NULL,
+                ExpectedCloseDate TEXT NOT NULL,
+                CreatedOnUtc TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                ModifiedOnUtc TEXT NULL,
+                CONSTRAINT FK_BusinessDeals_Businesses_BusinessId FOREIGN KEY (BusinessId) REFERENCES Businesses (Id) ON DELETE CASCADE
+            );
+            """);
+
+        await EnsureColumnAsync(context, "BusinessDeals", "ModifiedOnUtc", "TEXT NULL");
+        await context.Database.ExecuteSqlRawAsync(
+            "CREATE INDEX IF NOT EXISTS IX_BusinessDeals_BusinessId ON BusinessDeals (BusinessId);");
     }
 
     private static async Task EnsureColumnAsync(
@@ -153,6 +173,8 @@ public static class DbInitializer
                         "ALTER TABLE Businesses ADD COLUMN IsSeededExample INTEGER NOT NULL DEFAULT 0;",
                     "BusinessInvestments" when columnName == "ModifiedOnUtc" =>
                         "ALTER TABLE BusinessInvestments ADD COLUMN ModifiedOnUtc TEXT NULL;",
+                    "BusinessDeals" when columnName == "ModifiedOnUtc" =>
+                        "ALTER TABLE BusinessDeals ADD COLUMN ModifiedOnUtc TEXT NULL;",
                     _ => throw new InvalidOperationException("Unsupported schema change.")
                 };
 

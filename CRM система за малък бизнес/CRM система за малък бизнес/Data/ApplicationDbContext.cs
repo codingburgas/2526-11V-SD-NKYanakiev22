@@ -8,6 +8,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     : IdentityDbContext<ApplicationUser>(options)
 {
     public DbSet<Business> Businesses => Set<Business>();
+    public DbSet<BusinessDeal> BusinessDeals => Set<BusinessDeal>();
     public DbSet<BusinessInvestment> BusinessInvestments => Set<BusinessInvestment>();
     public DbSet<Company> Companies => Set<Company>();
     public DbSet<Customer> Customers => Set<Customer>();
@@ -43,12 +44,26 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .HasForeignKey(investment => investment.BusinessId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder.Entity<Business>()
+            .HasMany(business => business.Deals)
+            .WithOne(deal => deal.Business)
+            .HasForeignKey(deal => deal.BusinessId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.Entity<BusinessInvestment>()
             .Property(investment => investment.Amount)
             .HasColumnType("decimal(18,2)");
 
         builder.Entity<BusinessInvestment>()
             .Property(investment => investment.CreatedOnUtc)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+        builder.Entity<BusinessDeal>()
+            .Property(deal => deal.Value)
+            .HasColumnType("decimal(18,2)");
+
+        builder.Entity<BusinessDeal>()
+            .Property(deal => deal.CreatedOnUtc)
             .HasDefaultValueSql("CURRENT_TIMESTAMP");
     }
 }

@@ -34,4 +34,5 @@ public class Business : BaseEntity
     public bool IsSeededExample { get; set; }
 
     public ICollection<BusinessInvestment> Investments { get; set; } = new List<BusinessInvestment>();
+    public ICollection<BusinessDeal> Deals { get; set; } = new List<BusinessDeal>();
 }
