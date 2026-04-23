@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CrmSmallBusiness.Controllers;
 
-[Authorize(Roles = AppRoles.Admin)]
+[Authorize(Roles = $"{AppRoles.Admin},{AppRoles.Manager}")]
 public class AdminController(UserManager<ApplicationUser> userManager) : Controller
 {
     [HttpGet]
@@ -27,9 +27,14 @@ public class AdminController(UserManager<ApplicationUser> userManager) : Control
             });
         }
 
-        return View(new UserManagementViewModel { Users = items });
+        return View(new UserManagementViewModel
+        {
+            Users = items,
+            CanAssignRoles = User.IsInRole(AppRoles.Admin)
+        });
     }
 
+    [Authorize(Roles = AppRoles.Admin)]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateRole(UpdateUserRoleViewModel model)

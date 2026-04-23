@@ -6,7 +6,14 @@
 <section class="page-header">
     <p class="eyebrow">Admin Control</p>
     <h1>User roles</h1>
-    <p>Admins can promote users to <strong>Manager</strong> or change them back to <strong>User</strong>.</p>
+    @if (Model.CanAssignRoles)
+    {
+        <p>Admins can change user roles. Managers can view this page but cannot assign roles.</p>
+    }
+    else
+    {
+        <p>Managers have the same access to this page as admins, but role assignment stays admin-only.</p>
+    }
 </section>
 
 <div class="content-card">
@@ -17,7 +24,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Current role</th>
-                <th>Change role</th>
+                <th>@(Model.CanAssignRoles ? "Change role" : "Role management")</th>
             </tr>
             </thead>
             <tbody>
@@ -28,37 +35,44 @@
                     <td>@user.Email</td>
                     <td>@user.CurrentRole</td>
                     <td>
-                        <form asp-action="UpdateRole" method="post" class="role-form">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="UserId" value="@user.UserId" />
-                            <select name="Role" class="form-select">
-                                @if (user.CurrentRole == "User")
-                                {
-                                    <option value="User" selected>User</option>
-                                }
-                                else
-                                {
-                                    <option value="User">User</option>
-                                }
-                                @if (user.CurrentRole == "Manager")
-                                {
-                                    <option value="Manager" selected>Manager</option>
-                                }
-                                else
-                                {
-                                    <option value="Manager">Manager</option>
-                                }
-                                @if (user.CurrentRole == "Admin")
-                                {
-                                    <option value="Admin" selected>Admin</option>
-                                }
-                                else
-                                {
-                                    <option value="Admin">Admin</option>
-                                }
-                            </select>
-                            <button type="submit" class="btn btn-outline-primary">Save</button>
-                        </form>
+                        @if (Model.CanAssignRoles)
+                        {
+                            <form asp-action="UpdateRole" method="post" class="role-form">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="UserId" value="@user.UserId" />
+                                <select name="Role" class="form-select">
+                                    @if (user.CurrentRole == "User")
+                                    {
+                                        <option value="User" selected>User</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="User">User</option>
+                                    }
+                                    @if (user.CurrentRole == "Manager")
+                                    {
+                                        <option value="Manager" selected>Manager</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Manager">Manager</option>
+                                    }
+                                    @if (user.CurrentRole == "Admin")
+                                    {
+                                        <option value="Admin" selected>Admin</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Admin">Admin</option>
+                                    }
+                                </select>
+                                <button type="submit" class="btn btn-outline-primary">Save</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-muted">View only</span>
+                        }
                     </td>
                 </tr>
             }
